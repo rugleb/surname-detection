@@ -16,7 +16,6 @@ HEADERS = CIMultiDict({
     hdrs.EXPIRES: "0",
     hdrs.PRAGMA: "no-cache",
     hdrs.CACHE_CONTROL: "no-cache, no-store, must-revalidate",
-    hdrs.CONTENT_ENCODING: "gzip",
 })
 
 DEFAULT_DATA = {}
