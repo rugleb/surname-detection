@@ -10,6 +10,8 @@ with open("requirements.txt", "r") as f:
 
 url = "https://github.com/rugleb?tab=repositories"
 
+packages = find_packages(include=["project"])
+
 setup(name="test",
       version="0.0.1",
       description="test description",
@@ -19,7 +21,7 @@ setup(name="test",
       download_url=url,
       author="Gleb Karpushkin",
       author_email="rugleb@gmail.com",
-      packages=find_packages(),
+      packages=packages,
       install_requires=install_requires,
       python_requires=">=3.7",
       zip_safe=True,
