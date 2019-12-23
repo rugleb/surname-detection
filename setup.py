@@ -24,6 +24,8 @@ setup(name="test",
       packages=packages,
       install_requires=install_requires,
       python_requires=">=3.7",
+      platforms=['macOS', 'POSIX', 'Windows'],
+      include_package_data=True,
       zip_safe=True,
       license="MIT",
       classifiers=[
