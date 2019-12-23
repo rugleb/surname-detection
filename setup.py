@@ -22,7 +22,7 @@ setup(name="test",
       packages=find_packages(),
       install_requires=install_requires,
       python_requires=">=3.7",
-      zip_safe=False,
+      zip_safe=True,
       classifiers=[
           "Programming Language :: Python :: 3",
           "Operating System :: OS Independent",
