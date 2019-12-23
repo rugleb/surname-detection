@@ -12,7 +12,8 @@ __all__ = ("middlewares",)
 
 
 def create_request_id() -> str:
-    return uuid4().hex
+    uuid = uuid4()
+    return str(uuid)
 
 
 @web.middleware

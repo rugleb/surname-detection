@@ -3,7 +3,6 @@ from typing import Dict, Optional, Union
 
 import ujson
 from aiohttp import hdrs, web
-from multidict import CIMultiDict
 
 __all__ = (
     "create_response",
@@ -12,11 +11,11 @@ __all__ = (
     "server_error",
 )
 
-HEADERS = CIMultiDict({
+HEADERS = {
     hdrs.EXPIRES: "0",
     hdrs.PRAGMA: "no-cache",
     hdrs.CACHE_CONTROL: "no-cache, no-store, must-revalidate",
-})
+}
 
 DEFAULT_DATA = {}
 
