@@ -1,6 +1,6 @@
 import unittest
 
-from project.lib import ExcludeSchema, StrEnum
+from project.lib import ExcludeSchema, StrEnum, is_uuid
 from tests import MainTestCase
 
 
@@ -35,6 +35,17 @@ class StrEnumTestCase(MainTestCase):
 
         self.assertEqual("red", color)
         self.assertIsInstance(color, str)
+
+
+class IsUUIDTestCase(MainTestCase):
+
+    def test_with_valid_uuid(self) -> None:
+        uuid = "42ca9035-42b1-47eb-b2dd-2c3a19dca79f"
+        self.assertTrue(is_uuid(uuid))
+
+    def test_with_invalid_uuid(self) -> None:
+        uuid = "42ca9035"
+        self.assertFalse(is_uuid(uuid))
 
 
 if __name__ == "__main__":
