@@ -28,9 +28,6 @@ setup(name="test",
       include_package_data=True,
       zip_safe=True,
       license="MIT",
-      console_scripts=[
-          "run = main:main",
-      ],
       classifiers=[
           "Programming Language :: Python",
           "Programming Language :: Python :: 3",
