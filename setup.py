@@ -23,6 +23,7 @@ setup(name="test",
       install_requires=install_requires,
       python_requires=">=3.7",
       zip_safe=True,
+      license="MIT",
       classifiers=[
           'Programming Language :: Python',
           'Programming Language :: Python :: 3',
