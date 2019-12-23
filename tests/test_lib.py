@@ -31,10 +31,10 @@ class StrEnumTestCase(MainTestCase):
 
     def test_on_isinstance(self) -> None:
         color = Colors.RED
-        self.assertIs(color, Colors.RED)
-
-        self.assertEqual("red", color)
         self.assertIsInstance(color, str)
+
+        as_string = str(color)
+        self.assertEqual("red", as_string)
 
 
 class IsUUIDTestCase(MainTestCase):
