@@ -6,6 +6,10 @@ omit =
     # __main__ is trivial and hard to test properly
     */__main__.py
 
+[paths]
+source =
+   project
+
 [report]
 precision = 2
 exclude_lines =
