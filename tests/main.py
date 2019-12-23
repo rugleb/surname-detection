@@ -17,10 +17,10 @@ class MainTestCase(AioHTTPTestCase):
         app = await create_app()
         return app
 
-    def assertEmptyDict(self, value: dict) -> None:
+    def assertDictEmpty(self, value: dict) -> None:
         self.assertDictEqual({}, value)
 
-    def assertEmptyList(self, value: list) -> None:
+    def assertListEmpty(self, value: list) -> None:
         self.assertListEqual([], value)
 
     def assertUUID(self, value: str, *, version: int = 4) -> None:
