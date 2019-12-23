@@ -1,9 +1,10 @@
-from typing import Any, Mapping
+from typing import Mapping, Sized
 
 from aiohttp import client, web
 from aiohttp.test_utils import AioHTTPTestCase
 
-from project import create_app
+from project.app import create_app
+from project.lib import is_uuid
 
 __all__ = (
     "MainTestCase",
@@ -16,11 +17,22 @@ class MainTestCase(AioHTTPTestCase):
         app = await create_app()
         return app
 
-    def assertEmptyDict(self, value: Any) -> None:
+    def assertEmptyDict(self, value: dict) -> None:
         self.assertDictEqual({}, value)
 
-    def assertEmptyList(self, value: Any) -> None:
+    def assertEmptyList(self, value: list) -> None:
         self.assertListEqual([], value)
+
+    def assertUUID(self, value: str, *, version: int = 4) -> None:
+        self.assertTrue(is_uuid(value), version)
+
+    def assertLenEqual(self, first: Sized, second: Sized) -> None:
+        a = len(first)
+        b = len(second)
+        self.assertEqual(a, b)
+
+    def assertHasNotDuplicates(self, it: list) -> None:
+        self.assertLenEqual(it, set(it))
 
     def assertSubset(self, first: Mapping, second: Mapping) -> None:
         for k, v in first.items():
