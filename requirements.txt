@@ -4,6 +4,7 @@ attrs==19.3.0
 brotlipy==0.7.0
 cchardet==2.1.5
 coverage==5.0.1
+environs==7.1.0
 gunicorn==20.0.4
 marshmallow==3.3.0
 multidict==4.7.2
