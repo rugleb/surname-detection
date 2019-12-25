@@ -10,7 +10,7 @@ from project import create_app, settings
 def main() -> None:
     arg_parser = ArgumentParser(
         prog="python main.py",
-        description="aiohttp development server",
+        description="Detection development server",
     )
     arg_parser.add_argument(
         "--host",
