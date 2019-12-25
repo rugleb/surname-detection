@@ -12,7 +12,7 @@ url = "https://github.com/rugleb/surname-detection"
 
 packages = find_packages(include=["project"])
 
-setup(name="test",
+setup(name="surname-detector",
       version="0.0.1",
       description="Identify the words that are surnames",
       long_description=long_description,
