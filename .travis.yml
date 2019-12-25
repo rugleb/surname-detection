@@ -17,13 +17,14 @@ script:
 
 before_deploy:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - docker login -u $HEROKU_USERNAME -p $HEROKU_PASSWORD registry.heroku.com
+  - docker login -u $HEROKU_USERNAME -p $HEROKU_API_KEY registry.heroku.com
 
 deploy:
-  provider: heroku
-  api_key: $HEROKU_PASSWORD
-  app: surname-detection
-  script: make release
+  provider: script
+  script: make deploy
   skip_cleanup: true
   on:
     branch: develop
+
+after_deploy:
+  - make release
