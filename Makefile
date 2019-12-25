@@ -1,4 +1,4 @@
-IMAGE_NANE=surname-detector
+IMAGE_NANE=surname-detection
 
 install:
 	pip install --upgrade --no-cache-dir pip -r requirements-dev.txt
