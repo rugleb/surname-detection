@@ -28,6 +28,9 @@ deploy: build
 	docker push rugleb/test_image:latest
 	docker push registry.heroku.com/surname-detection/web
 
+release: deploy
+	heroku container:release web --app="surname-detection"
+
 all: install lint test cov build
 
 .PHONY: install cov isort lint build all
