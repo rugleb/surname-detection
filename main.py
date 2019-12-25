@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 
 from aiohttp import web
 
-from project import create_app
+from project import create_app, settings
 
 
 def main() -> None:
@@ -16,13 +16,13 @@ def main() -> None:
         "--host",
         dest="host",
         help="TCP/IP hostname to serve on (default: %(default)r)",
-        default="0.0.0.0",
+        default=settings.HOST,
     )
     arg_parser.add_argument(
         "--port",
         dest="port",
         help="TCP/IP port to serve on (default: %(default)r)",
-        default="8080",
+        default=settings.PORT,
     )
     args = arg_parser.parse_args()
     
