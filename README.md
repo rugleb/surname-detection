@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/rugleb/surname-detection/blob/master/LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.7%20%7C%203.8-green)](https://www.python.org/)
 
-# About
+## About
 
 The [Surname-Detection](https://github.com/rugleb/surname-detection) is an API on top of the ML model that allows you to determine whether a word is a surname or not.
 
@@ -31,6 +31,52 @@ Help:
 
 ```shell script
 python main.py -h
+```
+
+## Endpoints
+
+### Ping
+
+Checking the health (activity) of the server.  
+Try it on heroku: [link](https://surname-detection.herokuapp.com/ping).
+
+Request:
+
+```
+GET /ping 
+```
+
+Response:
+
+```json
+{
+    "status": true,
+    "data": {},
+    "message": "pong"
+}
+```
+
+### Detect
+
+Request to determine whether this word is a surname.  
+Try it on heroku: [link]([heroku](https://surname-detection.herokuapp.com/detect?surname=Фельдман)).
+
+Request:
+
+```
+GET /detect?surname=Фельдман
+```
+
+Response:
+
+```json
+{
+    "status": true,
+    "data": {
+        "confidence": 0.4994302487
+    },
+    "message": "OK"
+}
 ```
 
 ## Testing
