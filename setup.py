@@ -8,13 +8,13 @@ with open("README.md", "r") as f:
 with open("requirements.txt", "r") as f:
     install_requires = [r for r in f.read().split(os.linesep) if r]
 
-url = "https://github.com/rugleb?tab=repositories"
+url = "https://github.com/rugleb/surname-detection"
 
 packages = find_packages(include=["project"])
 
 setup(name="test",
       version="0.0.1",
-      description="test description",
+      description="Identify the words that are surnames",
       long_description=long_description,
       long_description_content_type="text/markdown",
       url=url,
@@ -31,8 +31,8 @@ setup(name="test",
       classifiers=[
           "Programming Language :: Python",
           "Programming Language :: Python :: 3",
-          "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
           "Operating System :: OS Independent",
           "Topic :: Software Development :: Libraries :: Python Modules",
           "Topic :: Internet",
