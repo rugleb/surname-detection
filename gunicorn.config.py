@@ -1,12 +1,12 @@
 from multiprocessing import cpu_count
 
-from project import env
+from project import settings, env
 
 # The number of pending connections.
 backlog = env.int("GUNICORN_BACKLOG", 2048)
 
 # The socket to bind.
-bind = env.str("GUNICORN_BIND", "0.0.0.0:8080")
+bind = env.str("GUNICORN_BIND", settings.BIND)
 
 # Check the configuration.
 check_config = env.bool("GUNICORN_CHECK_CONFIG", False)
