@@ -24,7 +24,9 @@ build:
 
 deploy: build
 	docker tag test_image:latest rugleb/test_image:latest
+	docker tag test_image:latest registry.heroku.com/surname-detection/web
 	docker push rugleb/test_image:latest
+	docker push registry.heroku.com/surname-detection/web
 
 all: install lint test cov build
 

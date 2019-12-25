@@ -16,7 +16,8 @@ script:
   - make build
 
 before_deploy:
-  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker login -u $HEROKU_USERNAME -p $HEROKU_PASSWORD registry.heroku.com
 
 deploy:
   provider: script
