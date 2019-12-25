@@ -16,8 +16,8 @@ addons:
       - docker-ce
 
 install:
-  - Make install
+  - make install
 
 script:
-  - Make cov
-  - Make build
+  - make cov
+  - make build
