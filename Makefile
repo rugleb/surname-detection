@@ -1,3 +1,5 @@
+IMAGE_NANE=surname-detector
+
 install:
 	pip install --upgrade --no-cache-dir pip -r requirements-dev.txt
 
@@ -20,12 +22,12 @@ isort:
 lint: isort test cov
 
 build:
-	docker build . -t test_image:latest -f dockerfile
+	docker build . -t $(IMAGE_NANE):latest -f dockerfile
 
 deploy: build
-	docker tag test_image:latest rugleb/test_image:latest
-	docker tag test_image:latest registry.heroku.com/surname-detection/web
-	docker push rugleb/test_image:latest
+	docker tag $(IMAGE_NANE):latest rugleb/$(IMAGE_NANE):latest
+	docker tag $(IMAGE_NANE):latest registry.heroku.com/surname-detection/web
+	docker push rugleb/$(IMAGE_NANE):latest
 	docker push registry.heroku.com/surname-detection/web
 
 release: deploy
