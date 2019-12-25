@@ -15,9 +15,12 @@ script:
   - make cov
   - make build
 
+before_deploy:
+  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
 deploy:
   provider: script
-  script: make travis_deploy
+  script: make deploy
   skip_cleanup: true
   on:
     branch: develop

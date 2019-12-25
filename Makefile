@@ -26,10 +26,6 @@ deploy: build
 	docker tag test_image:latest rugleb/test_image:latest
 	docker push rugleb/test_image:latest
 
-travis_deploy:
-	docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD --password-stdin
-	deploy
-
 all: install lint test cov build
 
 .PHONY: install cov isort lint build all
