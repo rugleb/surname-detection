@@ -1,7 +1,7 @@
 install:
 	pip install --upgrade --no-cache-dir pip -r requirements-dev.txt
 
-test:
+coverage:
 	coverage run --source project -m unittest -qv
 	coverage report
 	coverage html -d coverage/html

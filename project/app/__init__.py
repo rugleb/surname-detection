@@ -1,5 +1,4 @@
 from .factory import create_app
-
 from .schemas import SurnameSchema
 
 __all__ = (
