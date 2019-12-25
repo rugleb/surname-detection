@@ -1,8 +1,11 @@
 install:
 	pip install --upgrade --no-cache-dir pip -r requirements-dev.txt
 
+test:
+	python -m unittest -qvb
+
 cov:
-	coverage run --source project -m unittest -qv
+	coverage run --source project -m unittest -qvb
 	coverage report
 	coverage html -d coverage/html
 	coverage xml -o coverage/cobertura.xml
@@ -19,7 +22,7 @@ lint: isort
 build:
 	docker build . -t test_image:latest -f dockerfile
 
-all: install lint cov build
+all: install lint test cov build
 
 .PHONY: install cov isort lint build all
 

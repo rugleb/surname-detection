@@ -13,5 +13,6 @@ install:
   - make install
 
 script:
+  - make test
   - make cov
   - make build
