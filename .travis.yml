@@ -25,6 +25,7 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
+  condition: $TRAVIS_PYTHON_VERSION == 3.7
 
 after_deploy:
   - make release
