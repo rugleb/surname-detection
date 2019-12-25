@@ -22,6 +22,10 @@ lint: isort
 build:
 	docker build . -t test_image:latest -f dockerfile
 
+deploy: build
+	docker tag test_image:latest rugleb/test_image:latest
+	docker push rugleb/test_image:latest
+
 all: install lint test cov build
 
 .PHONY: install cov isort lint build all
