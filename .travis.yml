@@ -24,7 +24,7 @@ deploy:
   script: make deploy
   skip_cleanup: true
   on:
-    branch: develop
+    branch: master
 
 after_deploy:
   - make release
