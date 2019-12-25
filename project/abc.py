@@ -9,5 +9,5 @@ __all__ = (
 class Dictable:
 
     @abstractmethod
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> Dict:  # pragma: no cover
         pass

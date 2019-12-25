@@ -15,7 +15,7 @@ __all__ = (
 
 @attr.s(slots=True, frozen=True)
 class Prediction(Dictable):
-    confidence: float
+    confidence: float = attr.ib()
 
     def to_dict(self) -> Dict:
         return attr.asdict(self)

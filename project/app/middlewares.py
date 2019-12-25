@@ -50,7 +50,7 @@ async def validation_error_handler(request: web.Request, handler: Handler):
         return await handler(request)
     except ValidationError as e:
         message = "Input payload validation failed."
-        return response.bad_request(e.messages, message)
+        return response.bad_request({"errors": e.messages}, message)
 
 
 middlewares = (
