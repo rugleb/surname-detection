@@ -17,7 +17,7 @@ isort:
 	isort -rc gunicorn.config.py
 	isort -rc main.py
 
-lint: isort
+lint: isort test cov
 
 build:
 	docker build . -t test_image:latest -f dockerfile
