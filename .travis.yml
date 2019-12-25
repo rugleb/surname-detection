@@ -4,10 +4,8 @@ python:
   - '3.7'
   - '3.8'
 
-addons:
-  apt:
-    packages:
-      - docker-ce
+services:
+  - docker
 
 install:
   - make install
@@ -16,3 +14,10 @@ script:
   - make test
   - make cov
   - make build
+
+deploy:
+  provider: script
+  script: make travis_deploy
+  skip_cleanup: true
+  on:
+    branch: develop
