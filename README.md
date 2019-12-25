@@ -88,11 +88,12 @@ make test
 ```
 
 Run unittests with code coverage:
+
 ```shell script
 make cov
 ```
 
-# Docker
+## Docker
 
 Build the image:
 
@@ -100,12 +101,12 @@ Build the image:
 make build
 ```
 
-Push image to docker hub and heroku registry:
+Push image to the [Docker Hub](https://hub.docker.com/repository/docker/rugleb/surname-detection) and Heroku registry:
 
 ```shell script
 make deploy
 ```
 
-# License
+## License
 
 This project is open-sourced software licensed under the [MIT license](https://github.com/rugleb/surname-detection/blob/master/LICENSE).
