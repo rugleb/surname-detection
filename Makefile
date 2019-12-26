@@ -14,6 +14,7 @@ cov:
 	coverage erase
 
 isort:
+	isort -rc examples
 	isort -rc project
 	isort -rc tests
 	isort -rc gunicorn.config.py
