@@ -59,7 +59,7 @@ Response:
 ### Detect
 
 Request to determine whether this word is a surname.  
-Try it on heroku: [link]([heroku](https://surname-detection.herokuapp.com/detect?surname=Фельдман)).
+Try it on heroku: [link](https://surname-detection.herokuapp.com/detect?surname=Фельдман).
 
 Request:
 
