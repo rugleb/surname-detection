@@ -15,6 +15,9 @@ script:
   - make cov
   - make build
 
+after_success:
+  - codecov
+
 before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "$HEROKU_API_KEY"  | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
