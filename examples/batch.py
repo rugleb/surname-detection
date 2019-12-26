@@ -9,7 +9,7 @@ from aiohttp import ClientSession
 URL = "https://surname-detection.herokuapp.com/detect"
 
 
-def read_words(path: str) -> Iterator[str]:
+def read_words(path: str) -> Iterator:
     with open(path) as f:
         reader = csv.DictReader(f)
         for i, row in enumerate(reader):
@@ -33,7 +33,9 @@ def create_tasks(queue: Dict[int, str], session: ClientSession):
 
 
 async def get_confidence(session: ClientSession, word: str, i: int):
-    params = {"surname": word}
+    params = {
+        "surname": word,
+    }
     async with session.get(URL, params=params) as r:
         json = await r.json()
         return json["status"], json["data"], word, i
