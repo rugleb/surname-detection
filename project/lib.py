@@ -1,5 +1,6 @@
 import pickle
 from enum import Enum
+from pathlib import Path
 from typing import Any
 from uuid import UUID
 
@@ -36,6 +37,6 @@ def is_uuid(value: str, version: int = 4) -> bool:
     return str(uuid) == value
 
 
-def read_pickle_file(path: str, mode: str = "rb") -> Any:
-    with open(path, mode) as f:
+def read_pickle_file(path: Path, mode: str = "rb") -> Any:
+    with path.open(mode) as f:
         return pickle.load(f)

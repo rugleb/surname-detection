@@ -1,8 +1,10 @@
 from http import HTTPStatus
-from typing import Dict, Optional, Union
+from typing import Dict, Optional
 
 import ujson
 from aiohttp import hdrs, web
+
+from project.types import Headers
 
 __all__ = (
     "create_response",
@@ -11,26 +13,24 @@ __all__ = (
     "server_error",
 )
 
-HEADERS = {
+HEADERS: Headers = {
     hdrs.EXPIRES: "0",
     hdrs.PRAGMA: "no-cache",
     hdrs.CACHE_CONTROL: "no-cache, no-store, must-revalidate",
 }
 
-DEFAULT_DATA = {}
 
-
-def create_response(http_status: Union[int, HTTPStatus],
+def create_response(code: int,
                     data: Optional[dict] = None,
                     message: Optional[str] = None) -> web.Response:
-    """An HTTP Response instance factory"""
+    """Create a new JSON Response class instance."""
 
-    if not isinstance(http_status, HTTPStatus):
-        http_status = HTTPStatus(http_status, None)
+    # noinspection PyArgumentList
+    http_status = HTTPStatus(code)
 
     content = {
         "status": http_status < HTTPStatus.BAD_REQUEST,
-        "data": data or DEFAULT_DATA,
+        "data": data or {},
         "message": message or http_status.phrase,
     }
 

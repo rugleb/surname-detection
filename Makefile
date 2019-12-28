@@ -19,8 +19,12 @@ isort:
 	isort -rc tests
 	isort -rc gunicorn.config.py
 	isort -rc main.py
+	isort -rc setup.py
 
-lint: isort test cov
+mypy:
+	mypy project
+
+lint: isort mypy test
 
 build:
 	docker build . -t $(IMAGE_NANE):latest -f dockerfile
@@ -34,8 +38,8 @@ deploy: build
 release: deploy
 	heroku container:release web --app="surname-detection"
 
-all: install lint test cov build
+all: install lint cov build
 
-.PHONY: install cov isort lint build all
+.PHONY: install test cov isort mypy lint build all
 
 .DEFAULT_GOAL := all

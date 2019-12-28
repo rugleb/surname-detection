@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Dict
 
 import attr
@@ -29,7 +30,7 @@ class SurnameDetector:
     CONSONANTS = 'бвгджзйклмнпрстфхчцшщъь'
 
     @classmethod
-    def from_file(cls, path: str) -> "SurnameDetector":
+    def from_file(cls, path: Path) -> "SurnameDetector":
         model = read_pickle_file(path)
         return cls(model)
 
