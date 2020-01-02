@@ -1,7 +1,7 @@
 PIP ?= pip
 PYTHON ?= python
 
-SOURCES = project examples gunicorn.config.py main.py setup.py
+SOURCES = project/ examples/ gunicorn.config.py main.py setup.py
 TESTS = tests
 
 PROJECT_NAME = surname-detection
@@ -29,7 +29,10 @@ mypy:
 pylint:
 	pylint $(SOURCES)
 
-lint: isort mypy pylint test
+flake:
+	flake8 $(SOURCES)
+
+lint: isort mypy pylint flake test
 
 build:
 	docker build . -t $(IMAGE_NANE):latest -f dockerfile
@@ -45,6 +48,6 @@ release: deploy
 
 all: install lint cov build
 
-.PHONY: install test cov isort mypy pylint lint build all
+.PHONY: install test cov isort mypy pylint flake lint build all
 
 .DEFAULT_GOAL := all
