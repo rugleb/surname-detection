@@ -3,9 +3,9 @@ from aiohttp import web
 
 from project import settings
 
-from .middlewares import MIDDLEWARES
+from .middlewares import middlewares
 from .services import SurnameDetector
-from .views import ROUTES
+from .views import routes
 
 __all__ = (
     "create_app",
@@ -23,8 +23,8 @@ async def detector_context(app: web.Application):
 
 
 async def create_app() -> web.Application:
-    app = web.Application(middlewares=MIDDLEWARES)
-    app.router.add_routes(ROUTES)
+    app = web.Application(middlewares=middlewares)
+    app.router.add_routes(routes)
 
     app.cleanup_ctx.append(detector_context)
 

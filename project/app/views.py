@@ -4,7 +4,7 @@ from project.http import ok
 
 from .schemas import SurnameSchema
 
-__all__ = ("ROUTES",)
+__all__ = ("routes", )
 
 
 async def ping(_: web.Request) -> web.Response:
@@ -19,7 +19,7 @@ async def detect(request: web.Request) -> web.Response:
     return ok(data)
 
 
-ROUTES = (
+routes = (
     web.route(hdrs.METH_ANY, "/ping", ping, name="ping"),
     web.route(hdrs.METH_GET, "/detect", detect, name="detect"),
 )

@@ -1,6 +1,4 @@
-import pathlib
-import re
-from typing import Any, Dict
+from typing import Dict
 
 import attr
 import pandas as pd
@@ -31,28 +29,46 @@ class SurnameDetector:
     CONSONANTS = 'бвгджзйклмнпрстфхчцшщъь'
 
     @classmethod
-    def from_file(cls, path: pathlib.Path) -> "SurnameDetector":
+    def from_file(cls, path: str) -> "SurnameDetector":
         model = read_pickle_file(path)
         return cls(model)
 
     def predict(self, word: str) -> Prediction:
-        features = self.extract_features(word)
-        data = pd.DataFrame([features])
-        probability = self.model.predict_proba(data)
-        confidence = probability[0, 1]
+        words = pd.Series([word])
+        data = self.extract_features(words)
+        predict = self.model.predict_proba(data)
+        confidence = predict[0, 1]
         return Prediction(confidence)
 
-    def extract_features(self, word: str) -> Dict[str, Any]:
-        data = {
-            'word_len': len(word),
-            'is_first_letter_capital': word.istitle(),
-            'is_symbol_in_word': re.match(r"\W", word) is not None,
-            'last_letter': word[-1:].lower(),
-            'letter_before_last': word[-2:-1].lower(),
-            'second_letter_before_last': word[-3:-2].lower(),
-            'third_letter_before_last': word[-4:-3].lower(),
-            'first_letter': word[:1].lower(),
-            'n_vowels': sum(map(word.lower().count, self.VOWELS)),
-            'n_consonants': sum(map(word.lower().count, self.CONSONANTS)),
-        }
+    def extract_features(self, words: pd.Series) -> pd.DataFrame:
+        data = pd.DataFrame()
+        data['word_len'] = words.str.len()
+
+        is_first_letter_capital = words.str.slice(0, 1).str.isupper()
+        data['is_first_letter_capital'] = is_first_letter_capital
+
+        is_symbol_in_word = words.str.contains(r"\W")
+        data['is_symbol_in_word'] = is_symbol_in_word
+
+        last_letter = words.str.slice(-1, None).str.lower()
+        data['last_letter'] = last_letter
+
+        letter_before_last = words.str.slice(-2, -1).str.lower()
+        data['letter_before_last'] = letter_before_last
+
+        second_letter_before_last = words.str.slice(-3, -2).str.lower()
+        data['second_letter_before_last'] = second_letter_before_last
+
+        third_letter_before_last = words.str.slice(-4, -3).str.lower()
+        data['third_letter_before_last'] = third_letter_before_last
+
+        first_letter = words.str.slice(0, 1).str.lower()
+        data['first_letter'] = first_letter
+
+        n_vowels = words.str.lower().str.count(f'[{self.VOWELS}]')
+        data['n_vowels'] = n_vowels
+
+        n_consonants = words.str.lower().str.count(f'[{self.CONSONANTS}]')
+        data['n_consonants'] = n_consonants
+
         return data
