@@ -11,7 +11,7 @@ install:
   - make install
 
 script:
-  - make test
+  - make lint
   - make cov
   - make build
 

@@ -8,7 +8,7 @@ from project.types import Handler
 
 from . import context
 
-__all__ = ("middlewares",)
+__all__ = ("MIDDLEWARES",)
 
 
 def create_request_id() -> str:
@@ -53,7 +53,7 @@ async def validation_error_handler(request: web.Request, handler: Handler):
         return response.bad_request({"errors": e.messages}, message)
 
 
-middlewares = (
+MIDDLEWARES = (
     web.normalize_path_middleware(append_slash=False, remove_slash=True),
     request_id_handler,
     default_error_handler,

@@ -1,10 +1,17 @@
-IMAGE_NANE=surname-detection
+PIP ?= pip
+PYTHON ?= python
+
+SOURCES = project/ examples/ gunicorn.config.py main.py setup.py
+TESTS = tests
+
+PROJECT_NAME = surname-detection
+IMAGE_NANE = $(PROJECT_NAME)
 
 install:
-	pip install --upgrade --no-cache-dir pip -r requirements-dev.txt
+	$(PIP) install --upgrade --no-cache-dir pip -r requirements-dev.txt
 
 test:
-	python -m unittest -qvb
+	$(PYTHON) -m unittest -qvb
 
 cov:
 	coverage run --source project -m unittest -qvb
@@ -14,27 +21,33 @@ cov:
 	coverage erase
 
 isort:
-	isort -rc project
-	isort -rc tests
-	isort -rc gunicorn.config.py
-	isort -rc main.py
+	isort -rc $(SOURCES) $(TESTS)
 
-lint: isort test cov
+mypy:
+	mypy $(SOURCES)
+
+pylint:
+	pylint $(SOURCES)
+
+flake:
+	flake8 $(SOURCES)
+
+lint: isort mypy pylint flake test
 
 build:
 	docker build . -t $(IMAGE_NANE):latest -f dockerfile
 
 deploy: build
 	docker tag $(IMAGE_NANE):latest rugleb/$(IMAGE_NANE):latest
-	docker tag $(IMAGE_NANE):latest registry.heroku.com/surname-detection/web
+	docker tag $(IMAGE_NANE):latest registry.heroku.com/$(PROJECT_NAME)/web
 	docker push rugleb/$(IMAGE_NANE):latest
-	docker push registry.heroku.com/surname-detection/web
+	docker push registry.heroku.com/$(PROJECT_NAME)/web
 
 release: deploy
-	heroku container:release web --app="surname-detection"
+	heroku container:release web --app="$(PROJECT_NAME)"
 
-all: install lint test cov build
+all: install lint cov build
 
-.PHONY: install cov isort lint build all
+.PHONY: install test cov isort mypy pylint flake lint build all
 
 .DEFAULT_GOAL := all

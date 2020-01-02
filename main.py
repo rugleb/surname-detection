@@ -25,7 +25,7 @@ def main() -> None:
         default=settings.PORT,
     )
     args = arg_parser.parse_args()
-    
+
     app = create_app()
 
     web.run_app(app,
